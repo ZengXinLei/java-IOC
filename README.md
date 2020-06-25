@@ -2,60 +2,6 @@
 
 > java 实现依赖注入动态代理对象
 
-## 目录
-
-## 简介
-
-## 注解依赖注入
-
-### 注解使用方法
-
-### 注解注入的实现
-
-#### 自定义注解`@Iner`
-
-#### `AnnotationBeanFactory`类
-
-#### `AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`
-
-#### `AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`
-
-#### BuildFiledFactory类
-
-#### InerFactory类
-
-## xml配置文件依赖注入
-
-##### xml配置文件注入使用方法
-
-##### xml配置文件注入的实现
-
-##### 配置文件
-
-##### XMLReader类
-
-##### `AbstractXMLReader`类
-
-`ApplicationContext`接口
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 简介
 
 分为两种注入模式，注解注入动态代理对象和xml配置文件注入动态代理对象
