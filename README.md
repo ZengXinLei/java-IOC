@@ -2,6 +2,28 @@
 
 > java 实现依赖注入动态代理对象
 
+- [**java IOC**](#--java-ioc--)
+- [简介](#--)
+- [注解依赖注入](#------)
+  * [注解使用方法](#------)
+  * [注解注入的实现](#-------)
+    + [自定义注解`@Iner`](#-------iner-)
+    + [`AnnotationBeanFactory`类](#-annotationbeanfactory--)
+    + [`AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`](#-annotationbeanfactory--------abstractannotationbeanfactory-)
+    + [`AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`](#-abstractannotationbeanfactory--------annotationfactory-)
+    + [BuildFiledFactory类](#buildfiledfactory-)
+    + [InerFactory类](#inerfactory-)
+- [xml配置文件依赖注入](#xml--------)
+  * [xml配置文件注入使用方法](#xml----------)
+  * [xml配置文件注入的实现](#xml---------)
+    + [配置文件](#----)
+    + [XMLReader类](#xmlreader-)
+    + [`AbstractXMLReader`类](#-abstractxmlreader--)
+    + [`ApplicationContext`接口](#-applicationcontext---)
+- [类型转换器Converter](#-----converter)
+    + [`Converter`类](#-converter--)
+    + [`AbstractConverter`类](#-abstractconverter--)
+
 ## 简介
 
 分为两种注入模式，注解注入动态代理对象和xml配置文件注入动态代理对象
