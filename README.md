@@ -5,10 +5,10 @@
   * [注解依赖注入](#注解依赖注入)
     * [注解使用方法](#注解使用方法)
     * [注解注入的实现](#注解注入的实现)
-      * [自定义注解`@Iner`](#自定义注解`iner`)
-      * [`AnnotationBeanFactory`类](#`annotationbeanfactory`类)
-      * [`AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`](#`annotationbeanfactory`继承的抽象类`abstractannotationbeanfactory`)
-      * [`AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`](#`abstractannotationbeanfactory`类实现的接口`annotationfactory`)
+      * [自定义注解@Iner](#自定义注解iner)
+      * [AnnotationBeanFactory类](#annotationbeanfactory类)
+      * [AnnotationBeanFactory继承的抽象类AbstractAnnotationBeanFactory](#annotationbeanfactory继承的抽象类abstractannotationbeanfactory)
+      * [AbstractAnnotationBeanFactory类实现的接口AnnotationFactory](#abstractannotationbeanfactory类实现的接口annotationfactory)
       * [BuildFiledFactory类](#buildfiledfactory类)
       * [InerFactory类](#inerfactory类)
   * [xml配置文件依赖注入](#xml配置文件依赖注入)
@@ -16,12 +16,11 @@
     * [xml配置文件注入的实现](#xml配置文件注入的实现)
       * [配置文件](#配置文件)
       * [XMLReader类](#xmlreader类)
-      * [`AbstractXMLReader`类](#`abstractxmlreader`类)
-      * [`ApplicationContext`接口](#`applicationcontext`接口)
+      * [AbstractXMLReader类](#abstractxmlreader类)
+      * [ApplicationContext接口](#applicationcontext接口)
   * [类型转换器Converter](#类型转换器converter)
-      * [`Converter`类](#`converter`类)
-      * [`AbstractConverter`类](#`abstractconverter`类)
-
+      * [Converter类](#converter类)
+      * [AbstractConverter类](#abstractconverter类)
 
 
 ## **java IOC**
@@ -75,7 +74,7 @@ public class App
 
 ### 注解注入的实现
 
-#### 自定义注解`@Iner`
+#### 自定义注解@Iner
 
 ```java
 @Target(ElementType.FIELD)//属性注解
@@ -84,7 +83,7 @@ public @interface Iner {
 }
 ```
 
-#### `AnnotationBeanFactory`类
+#### AnnotationBeanFactory类
 
 ```java
 public class AnnotationBeanFactory extends AbstractAnnotationBeanFactory {
@@ -100,7 +99,7 @@ public class AnnotationBeanFactory extends AbstractAnnotationBeanFactory {
 
 该类继承该类的抽象类`AbstractAnnotationBeanFactory`，构造器接收一个`Class` 类型的参数，一般为要创建的对象的类型，然后调用父类的构造器。
 
-#### `AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`
+#### AnnotationBeanFactory继承的抽象类AbstractAnnotationBeanFactory
 
 
 
@@ -180,7 +179,7 @@ public abstract class AbstractAnnotationBeanFactory implements AnnotationFactory
 
 该抽象类首先实现了注解工厂类的`build`方法，改方法生成了用户对象的动态代理类，并对该类的属性注解和方法注解进行处理，由于目前没有定义方法注解，所以`methodBuild`方法是空的。
 
-#### `AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`
+#### AbstractAnnotationBeanFactory类实现的接口AnnotationFactory
 
 ```java
 public interface AnnotationFactory {
@@ -512,7 +511,7 @@ zxl-1.0.xsd文件内容如下
 
 继承了`AbstractXMLReader`类,构造器接受一个参数，为配置文件的地址。调用了父类的构造器，把路径传给父类
 
-#### `AbstractXMLReader`类
+#### AbstractXMLReader类
 
 该类实现了`ApplicationContext`接口，通过读取配置文件来进行依赖注入
 
@@ -724,7 +723,7 @@ public abstract class AbstractXMLReader implements ApplicationContext {
 }
 ```
 
-#### `ApplicationContext`接口
+#### ApplicationContext接口
 
 ```java
 public interface ApplicationContext  {
@@ -739,7 +738,7 @@ public interface ApplicationContext  {
 
 
 
-#### `Converter`类
+#### Converter类
 
 继承了`AbstractConverter`类
 
@@ -757,7 +756,7 @@ public class Converter extends AbstractConverter {
 
 构造器有两个类型，`s`为待转换的类的类型，`t`为目标类
 
-#### `AbstractConverter`类
+#### AbstractConverter类
 
 ```java
 public abstract class AbstractConverter{
