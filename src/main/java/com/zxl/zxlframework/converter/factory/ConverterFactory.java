@@ -6,5 +6,5 @@ package com.zxl.zxlframework.converter.factory;
  * @system: ASUS
  **/
 public interface ConverterFactory {
-    <K> K getBean();
+    Object build(Class<?> s, Object o);
 }
