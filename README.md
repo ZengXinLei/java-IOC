@@ -4,27 +4,27 @@
 
 ## 目录
 
-### 简介
+## 简介
 
-### 注解依赖注入
+## 注解依赖注入
 
-#### 注解使用方法
+### 注解使用方法
 
-#### 注解注入的实现
+### 注解注入的实现
 
-##### 自定义注解`@Iner`
+#### 自定义注解`@Iner`
 
-##### `AnnotationBeanFactory`类
+#### `AnnotationBeanFactory`类
 
-##### `AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`
+#### `AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`
 
-##### `AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`
+#### `AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`
 
-##### BuildFiledFactory类
+#### BuildFiledFactory类
 
-##### InerFactory类
+#### InerFactory类
 
-#### xml配置文件依赖注入
+## xml配置文件依赖注入
 
 ##### xml配置文件注入使用方法
 
