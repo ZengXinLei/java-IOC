@@ -1,28 +1,31 @@
+# Table of Contents
+
+  * [**java IOC**](#java-ioc)
+  * [简介](#简介)
+  * [注解依赖注入](#注解依赖注入)
+    * [注解使用方法](#注解使用方法)
+    * [注解注入的实现](#注解注入的实现)
+      * [自定义注解`@Iner`](#自定义注解`iner`)
+      * [`AnnotationBeanFactory`类](#`annotationbeanfactory`类)
+      * [`AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`](#`annotationbeanfactory`继承的抽象类`abstractannotationbeanfactory`)
+      * [`AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`](#`abstractannotationbeanfactory`类实现的接口`annotationfactory`)
+      * [BuildFiledFactory类](#buildfiledfactory类)
+      * [InerFactory类](#inerfactory类)
+  * [xml配置文件依赖注入](#xml配置文件依赖注入)
+    * [xml配置文件注入使用方法](#xml配置文件注入使用方法)
+    * [xml配置文件注入的实现](#xml配置文件注入的实现)
+      * [配置文件](#配置文件)
+      * [XMLReader类](#xmlreader类)
+      * [`AbstractXMLReader`类](#`abstractxmlreader`类)
+      * [`ApplicationContext`接口](#`applicationcontext`接口)
+  * [类型转换器Converter](#类型转换器converter)
+      * [`Converter`类](#`converter`类)
+      * [`AbstractConverter`类](#`abstractconverter`类)
+
+
 ## **java IOC**
 
 > java 实现依赖注入动态代理对象
-
-- [**java IOC**](#--java-ioc--)
-- [简介](#--)
-- [注解依赖注入](#------)
-  * [注解使用方法](#------)
-  * [注解注入的实现](#-------)
-    + [自定义注解`@Iner`](#-------iner-)
-    + [`AnnotationBeanFactory`类](#-annotationbeanfactory--)
-    + [`AnnotationBeanFactory`继承的抽象类`AbstractAnnotationBeanFactory`](#-annotationbeanfactory--------abstractannotationbeanfactory-)
-    + [`AbstractAnnotationBeanFactory`类实现的接口`AnnotationFactory`](#-abstractannotationbeanfactory--------annotationfactory-)
-    + [BuildFiledFactory类](#buildfiledfactory-)
-    + [InerFactory类](#inerfactory-)
-- [xml配置文件依赖注入](#xml--------)
-  * [xml配置文件注入使用方法](#xml----------)
-  * [xml配置文件注入的实现](#xml---------)
-    + [配置文件](#----)
-    + [XMLReader类](#xmlreader-)
-    + [`AbstractXMLReader`类](#-abstractxmlreader--)
-    + [`ApplicationContext`接口](#-applicationcontext---)
-- [类型转换器Converter](#-----converter)
-    + [`Converter`类](#-converter--)
-    + [`AbstractConverter`类](#-abstractconverter--)
 
 ## 简介
 

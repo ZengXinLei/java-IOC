@@ -31,6 +31,12 @@
       <version>1.6.1</version>
     </dependency>
 
+<!--    生成md文档目录，与该项目无关-->
+    <dependency>
+      <groupId>com.github.houbb</groupId>
+      <artifactId>markdown-toc</artifactId>
+      <version>1.0.2</version>
+    </dependency>
 
   </dependencies>
 
