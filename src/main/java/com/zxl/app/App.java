@@ -16,7 +16,7 @@ public class App
 {
 
     public static void main(String[] args) {
-        //        AtxMarkdownToc.newInstance().genTocFile("F:\\all\\github\\Java-IOC\\README.md");
+                AtxMarkdownToc.newInstance().charset("UTF-8").genTocFile("F:\\all\\github\\Java-IOC\\README.md");
 //        ApplicationContext applicationContext =new XMLReader("classpath:example.xml");
 //        B b = applicationContext.getBean("b");
 //        System.out.println(b.toString());
