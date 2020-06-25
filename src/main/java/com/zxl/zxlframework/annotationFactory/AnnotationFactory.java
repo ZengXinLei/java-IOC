@@ -5,6 +5,6 @@ package com.zxl.zxlframework.annotationFactory;
  * @Time: 2020/06/24 15:17:25
  * @system: ASUS
  **/
-public interface BeanFactory {
+public interface AnnotationFactory {
     <T> T build(Object... initargs);
 }

@@ -6,7 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 
-@Target(ElementType.FIELD)
+@Target(ElementType.FIELD)//属性注解
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Iner {
 }

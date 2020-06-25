@@ -99,7 +99,7 @@ public abstract class AbstractXMLReader implements ConfigurableApplicationContex
         return (T) object;
     }
 
-    public void buildValue(String name, String value, String ref, Object o) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException, NoSuchFieldException, ClassNotFoundException {
+    private void buildValue(String name, String value, String ref, Object o) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException, NoSuchFieldException, ClassNotFoundException {
 
         //首字母大写
         char[] chars = name.toCharArray();
@@ -129,12 +129,12 @@ public abstract class AbstractXMLReader implements ConfigurableApplicationContex
         }
     }
 
-    public Object dealType(String name,String value,Object o) throws NoSuchFieldException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
+    private Object dealType(String name,String value,Object o) throws NoSuchFieldException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
 
         Field field=o.getClass().getSuperclass().getDeclaredField(name);
         return new  Converter(field.getType(),value).getBean();
     }
-    public Object dealObject(String name,String ref,Object o) throws NoSuchFieldException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
+    private Object dealObject(String name,String ref,Object o) throws NoSuchFieldException, InvocationTargetException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
 
         Field field=o.getClass().getSuperclass().getDeclaredField(name);
         return new  Converter(field.getType(),getBean(ref)).getBean();
@@ -143,7 +143,7 @@ public abstract class AbstractXMLReader implements ConfigurableApplicationContex
 
 
 
-    public boolean validateXMLByXSD(String xmlFileName) {
+    private boolean validateXMLByXSD(String xmlFileName) {
         String xsdFileName = "https://cdn.jsdelivr.net/gh/ZengXinLei/blog@master/xsd/zxl-1.0.xsd";
 //        String xsdFileName=ClassLoader.getSystemResource("").getPath()+"/xsd/zxl-1.0.xsd";
         boolean flag = true;
@@ -164,7 +164,7 @@ public abstract class AbstractXMLReader implements ConfigurableApplicationContex
         return flag;
     }
 
-    public <T> T value(Object o) {
+    private  <T> T value(Object o) {
         return (T) o;
     }
 

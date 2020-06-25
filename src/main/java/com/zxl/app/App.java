@@ -2,7 +2,8 @@ package com.zxl.app;
 
 
 import com.zxl.zxlframework.annotationFactory.AnnotationBeanFactory;
-import com.zxl.zxlframework.xmlFactory.context.support.XMLReader;
+
+import java.util.List;
 
 /**
  * Hello world!
@@ -12,6 +13,7 @@ public class App
 {
 
     public static void main(String[] args) {
-        B b=new XMLReader("classpath:example.xml").getBean("b");
+        A a=new AnnotationBeanFactory(A.class).build();
+        List<Class> list = a.list;
     }
 }
