@@ -13,7 +13,7 @@ import java.util.ArrayList;
  * @Time: 2020/06/26 09:47:31
  * @system: ASUS
  **/
-public abstract class AbstractBuildProperty extends AbstractUtils {
+public abstract class BuildProperty extends ClassesUtil {
     /**
      * @param name  name属性
      * @param value value属性

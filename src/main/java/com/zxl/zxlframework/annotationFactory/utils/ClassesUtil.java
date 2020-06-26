@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @Time: 2020/06/26 10:01:18
  * @system: ASUS
  **/
-public class AbstractUtils {
+public class ClassesUtil {
     public ArrayList<Class<?>> getClasses(){
         String path=this.getClass().getClassLoader().getResource("/").getPath();
         ArrayList<Class<?>> classes=new ArrayList<>();

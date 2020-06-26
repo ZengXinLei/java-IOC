@@ -27,7 +27,7 @@ public abstract class AbstractAnnotationBeanFactory implements AnnotationFactory
      * 创建一个动态代理对象，并对属性注解和方法注解进行处理
      * @param initargs
      * @param <T>
-     * @return
+     * @return  返回动态代理对象
      */
     @Override
     public <T> T build(Object... initargs) {

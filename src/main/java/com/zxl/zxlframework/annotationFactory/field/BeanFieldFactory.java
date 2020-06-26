@@ -2,7 +2,7 @@ package com.zxl.zxlframework.annotationFactory.field;
 
 import com.zxl.zxlframework.annotation.field.Bean;
 import com.zxl.zxlframework.annotation.field.Property;
-import com.zxl.zxlframework.annotationFactory.utils.AbstractBuildProperty;
+import com.zxl.zxlframework.annotationFactory.utils.BuildProperty;
 
 import java.lang.reflect.Field;
 
@@ -11,7 +11,7 @@ import java.lang.reflect.Field;
  * @Time: 2020/06/26 09:08:09
  * @system: ASUS
  **/
-public class BeanFieldFactory extends AbstractBuildProperty implements FieldFactory{
+public class BeanFieldFactory extends BuildProperty implements FieldFactory{
 
 
     @Override
