@@ -9,8 +9,8 @@ import java.util.ArrayList;
  * @system: ASUS
  **/
 public class AbstractUtils {
-    public static ArrayList<Class<?>> getClasses(){
-        String path=ClassLoader.getSystemResource("").getPath();
+    public ArrayList<Class<?>> getClasses(){
+        String path=this.getClass().getClassLoader().getResource("/").getPath();
         ArrayList<Class<?>> classes=new ArrayList<>();
         File file[]=new File(path).listFiles();
 

@@ -1,13 +1,15 @@
 package com.servlet;
 
+import com.zxl.app.A;
 import com.zxl.app.B;
-import com.zxl.zxlframework.xmlFactory.context.support.XMLReader;
+import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
+import com.zxl.zxlframework.xmlfactory.context.http.GlobalContext;
+import com.zxl.zxlframework.xmlfactory.context.support.XmlReader;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -17,22 +19,25 @@ import java.io.IOException;
  **/
 public class App extends HttpServlet {
     public App() {
-//        B b =new XMLReader("classpath:example.xml").getBean("b");
-//
-//        System.out.println(b.toString());
+
     }
 
 
 
     @Override
     public void init() throws ServletException {
-        String realPath = getServletContext().getRealPath("/");
-        File[] files = new File(realPath + "../classes").listFiles();
-        System.out.println();
+        ApplicationContext applicationContext =new XmlReader("classpath:application.xml");
+
+
+
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ApplicationContext applicationContext =new GlobalContext();
+        B b= applicationContext.getAttribute("b");
+        A a=applicationContext.getAttribute("a");
+        System.out.println(a.toString());
         req.getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 

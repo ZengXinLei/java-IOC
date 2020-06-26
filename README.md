@@ -397,7 +397,7 @@ public class App
 {
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext =new XMLReader("classpath:example.xml");
+        ApplicationContext applicationContext =new XMLReader("classpath:application.xml");
         B b = applicationContext.getBean("b");
         System.out.println(b.toString());
     }
@@ -407,7 +407,7 @@ public class App
 输出
 
 ```java
-B{b1='注入的字符串', b2=888, a=A{list=[class com.zxl.app.A, class com.zxl.app.App, class com.zxl.app.B, class com.zxl.util.BeanUtil$1, class com.zxl.util.BeanUtil$FieldType, class com.zxl.util.BeanUtil, class com.zxl.util.Util, interface com.zxl.zxlframework.annotation.field.Bean, interface com.zxl.zxlframework.annotation.field.Iner, interface com.zxl.zxlframework.annotation.field.Property, class com.zxl.zxlframework.annotationFactory.AbstractAnnotationBeanFactory, class com.zxl.zxlframework.annotationFactory.AnnotationBeanFactory, interface com.zxl.zxlframework.annotationFactory.AnnotationFactory, class com.zxl.zxlframework.annotationFactory.BuildFiledFactory, interface com.zxl.zxlframework.annotationFactory.field.FieldFactory, class com.zxl.zxlframework.annotationFactory.field.InerFieldFactory, class com.zxl.zxlframework.converter.AbstractConverter, class com.zxl.zxlframework.converter.Converter, interface com.zxl.zxlframework.converter.factory.ConverterFactory, interface com.zxl.zxlframework.xmlFactory.beans.factory.BeanFactory, interface com.zxl.zxlframework.xmlFactory.beans.factory.ListableBeanFactory, interface com.zxl.zxlframework.xmlFactory.context.ApplicationContext, interface com.zxl.zxlframework.xmlFactory.context.ConfigurableApplicationContext, class com.zxl.zxlframework.xmlFactory.context.support.AbstractXMLReader, class com.zxl.zxlframework.xmlFactory.context.support.XMLReader]}}
+B{b1='注入的字符串', b2=888, a=A{list=[class com.zxl.app.A, class com.zxl.app.App, class com.zxl.app.B, class com.zxl.util.BeanUtil$1, class com.zxl.util.BeanUtil$FieldType, class com.zxl.util.BeanUtil, class com.zxl.util.Util, interface com.zxl.zxlframework.annotation.field.Bean, interface com.zxl.zxlframework.annotation.field.Iner, interface com.zxl.zxlframework.annotation.field.Property, class com.zxl.zxlframework.annotationFactory.AbstractAnnotationBeanFactory, class com.zxl.zxlframework.annotationFactory.AnnotationBeanFactory, interface com.zxl.zxlframework.annotationFactory.AnnotationFactory, class com.zxl.zxlframework.annotationFactory.BuildFiledFactory, interface com.zxl.zxlframework.annotationFactory.field.FieldFactory, class com.zxl.zxlframework.annotationFactory.field.InerFieldFactory, class com.zxl.zxlframework.converter.AbstractConverter, class com.zxl.zxlframework.converter.Converter, interface com.zxl.zxlframework.converter.factory.ConverterFactory, interface com.zxl.zxlframework.xmlfactory.beans.factory.BeanFactory, interface com.zxl.zxlframework.xmlfactory.beans.factory.ListableBeanFactory, interface com.zxl.zxlframework.xmlfactory.context.ApplicationContext, interface com.zxl.zxlframework.xmlfactory.context.ConfigurableApplicationContext, class com.zxl.zxlframework.xmlfactory.context.support.AbstractXmlReader, class com.zxl.zxlframework.xmlfactory.context.support.XmlReader]}}
 ```
 
 
@@ -532,7 +532,7 @@ public abstract class AbstractXMLReader implements ApplicationContext {
             //获取文件名
             String file = path[1];
             //获取当前工作目录路径
-            String p = ClassLoader.getSystemResource("").getPath();
+            String p = this.getClass().getClassLoader().getResource("/").getPath();
             //进行拼接
             filiname = p + "/" + file;
         }

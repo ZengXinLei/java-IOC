@@ -29,8 +29,10 @@ public abstract class AbstractBuildProperty extends AbstractUtils {
 
         //name内容首字母大写
         char[] chars = name.toCharArray();
-        if (chars[0] >= 97 && chars[0] <= 122)
+        if (chars[0] >= 97 && chars[0] <= 122){
             chars[0] -= 32;
+        }
+
         //获取setter方法
         String methodName = "set" + String.valueOf(chars);
         //获取动态代理对象父类的所有方法

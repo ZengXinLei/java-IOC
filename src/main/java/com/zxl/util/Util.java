@@ -10,7 +10,7 @@ import java.util.ArrayList;
  **/
 public class Util {
     public static ArrayList<Class<?>> getClasses(){
-        String path=ClassLoader.getSystemResource("").getPath();
+        String path=Util.class.getClassLoader().getResource("/").getPath();
         ArrayList<Class<?>> classes=new ArrayList<>();
         File file[]=new File(path).listFiles();
 
