@@ -44,7 +44,7 @@ public class BuildFiledFactory {
 //                如果该属性上有该注解
                 if(f.isAnnotationPresent((Class<? extends Annotation>) Class.forName(FIELDANNOTATION +annotation))){
 //                    获取该注解对应的工厂
-                    FieldFactory fieldFactory= (FieldFactory) Class.forName(FIELDANNOTATIONFACTORY +annotation+"Factory").getDeclaredConstructor().newInstance();
+                    FieldFactory fieldFactory= (FieldFactory) Class.forName(FIELDANNOTATIONFACTORY +annotation+"FieldFactory").getDeclaredConstructor().newInstance();
 //                    添加到list里
                     fieldFactories.add(fieldFactory);
                   }

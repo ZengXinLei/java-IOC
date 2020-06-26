@@ -17,4 +17,6 @@ public @interface Property {
     String name() default "";
 
     String value() default "";
+
+    String ref() default "";
 }

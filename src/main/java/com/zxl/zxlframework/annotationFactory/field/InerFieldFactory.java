@@ -10,11 +10,11 @@ import java.util.ArrayList;
  * @Time: 2020/06/20 22:16:06
  * @system: ASUS
  **/
-public class InerFactory implements FieldFactory {
+public class InerFieldFactory implements FieldFactory {
     /**
      *
-     * @param field 动态代理对象
-     * @param o 动态代理对象的父类的属性
+     * @param field 动态代理对象父类的属性
+     * @param o 动态代理对象
      * @param <T>   null
      * @return
      */

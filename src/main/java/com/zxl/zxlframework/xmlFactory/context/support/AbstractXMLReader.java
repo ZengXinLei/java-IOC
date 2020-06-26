@@ -120,12 +120,10 @@ public abstract class AbstractXMLReader implements ApplicationContext {
             //获取ref属性
             String ref = e1.attributeValue("ref");
 
-            try {
-                //用这三个属性对动态代理对象进行处理
-                buildProperty(key, value, ref, object);
-            } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException | InstantiationException | NoSuchFieldException | ClassNotFoundException ex) {
-                ex.printStackTrace();
-            }
+
+            //用这三个属性对动态代理对象进行处理
+            buildProperty(key, value, ref, object);
+
 
         }
         return (T) object;
@@ -144,7 +142,7 @@ public abstract class AbstractXMLReader implements ApplicationContext {
      * @throws NoSuchFieldException
      * @throws ClassNotFoundException
      */
-    private void buildProperty(String name, String value, String ref, Object o) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException, NoSuchFieldException, ClassNotFoundException {
+    public void buildProperty(String name, String value, String ref, Object o){
 
         //name内容首字母大写
         char[] chars = name.toCharArray();
@@ -167,18 +165,30 @@ public abstract class AbstractXMLReader implements ApplicationContext {
                 //即传入的是属性
                 if (value != null){
                     //进行类型转换
-                    Object v = dealType(name, value, o);
+                    Object v = null;
+                    try {
+                        v = dealType(name, value, o);
+                        m.invoke(o, v);
+                    } catch (NoSuchFieldException | NoSuchMethodException | InvocationTargetException | IllegalAccessException | ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
                     //执行属性的set方法
-                    m.invoke(o, v);
+
                 }
                 //如果传入的是对象
                 else
                 {
                     //直接更改对象的field属性
                     //这里如果通过set方法注入的话好像也会出错
-                    Field field=o.getClass().getSuperclass().getDeclaredField(name);
-                    field.setAccessible(true);
-                    field.set(o,getBean(ref));
+                    Field field= null;
+                    try {
+                        field = o.getClass().getSuperclass().getDeclaredField(name);
+                        field.setAccessible(true);
+                        field.set(o,getBean(ref));
+                    } catch (NoSuchFieldException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+
                 }
             }
 
