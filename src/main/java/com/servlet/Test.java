@@ -15,7 +15,7 @@ public class Test {
             String s,
             int i
     ){
-        System.out.println("成功！！！");
+        System.out.println(s);
         return "成功！！！！";
     }
 }

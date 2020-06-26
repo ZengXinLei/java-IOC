@@ -4,8 +4,8 @@ import com.zxl.zxlframework.annotationFactory.BuildTypeAnnotation;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.Map;
 
 /**
@@ -28,8 +28,13 @@ public abstract class AbstractControllerFactory implements Controller {
             o=entry.getKey();
             method=entry.getValue();
         }
-        Parameter[] parameters = method.getParameters();
-        System.out.println(parameters.length);
+        Class<?>[] types = method.getParameterTypes();
+        try {
+            method.invoke(o,"你好",2);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
 
     }
 
