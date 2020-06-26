@@ -44,6 +44,8 @@ public abstract class AbstractXMLReader implements ApplicationContext {
             //获取文件名
             String file = path[1];
             //获取当前工作目录路径
+
+            ClassLoader systemClassLoader = ClassLoader.getSystemClassLoader();
             String p = ClassLoader.getSystemResource("").getPath();
             //进行拼接
             filiname = p + "/" + file;
