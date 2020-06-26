@@ -62,7 +62,10 @@ public abstract class AbstractBuildProperty extends AbstractUtils {
     }
 
     public void buildRef(String name, String ref, Object o) {
+
+        //获取所有类
         ArrayList<Class<?>> classes = getClasses();
+//        遍历所有类，找到带有bean注解的属性并且name相同
         for (Class<?> c :
                 classes) {
             Field[] fields = c.getDeclaredFields();

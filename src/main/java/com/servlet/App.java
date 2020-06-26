@@ -1,9 +1,7 @@
 package com.servlet;
 
-import com.zxl.app.A;
-import com.zxl.app.B;
+import com.zxl.zxlframework.controlller.ControllerFactory;
 import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
-import com.zxl.zxlframework.xmlfactory.context.http.GlobalContext;
 import com.zxl.zxlframework.xmlfactory.context.support.XmlReader;
 
 import javax.servlet.ServletException;
@@ -25,26 +23,15 @@ public class App extends HttpServlet {
 
 
     @Override
-    public void init() throws ServletException {
+    public void init(){
+        //加载配置文件
         ApplicationContext applicationContext =new XmlReader("classpath:application.xml");
 
 
 
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ApplicationContext applicationContext =new GlobalContext();
-        B b= applicationContext.getAttribute("b");
-        A a=applicationContext.getAttribute("a");
-        System.out.println(a.toString());
-        req.getRequestDispatcher("/login.jsp").forward(req, resp);
-    }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
 
 
 
@@ -53,5 +40,8 @@ public class App extends HttpServlet {
         super.doPut(req, resp);
     }
 
-
+    @Override
+    protected void service(HttpServletRequest req, HttpServletResponse resp) {
+        new ControllerFactory(req,resp);
+    }
 }
