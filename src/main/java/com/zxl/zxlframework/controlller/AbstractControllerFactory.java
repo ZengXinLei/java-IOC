@@ -1,7 +1,10 @@
 package com.zxl.zxlframework.controlller;
 
 import com.zxl.zxlframework.annotationFactory.BuildTypeAnnotation;
+import com.zxl.zxlframework.annotationFactory.param.ParamFactory;
 import com.zxl.zxlframework.converter.Converter;
+import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
+import com.zxl.zxlframework.xmlfactory.context.http.GlobalContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +22,7 @@ public abstract class AbstractControllerFactory implements Controller {
 
     private static final String PACKAGE="com.zxl.zxlframework.annotationFactory.param.";
 
+    private ApplicationContext applicationContext=new GlobalContext();
 
     public AbstractControllerFactory(HttpServletRequest req, HttpServletResponse resp) {
             doService(req,resp);
@@ -33,15 +37,7 @@ public abstract class AbstractControllerFactory implements Controller {
             o=entry.getKey();
             method=entry.getValue();
         }
-//        try {
-//            method.invoke(o,"你好",2);
-//        } catch (IllegalAccessException | InvocationTargetException e) {
-//            e.printStackTrace();
-//        }
-
-
-
-
+        
         buildX(o,method,req,resp);
     }
 
@@ -62,21 +58,32 @@ public abstract class AbstractControllerFactory implements Controller {
         Class<?>[] parameterTypes = method.getParameterTypes();
         //遍历函数所有参数
         for (int i = 0; i < annotations.length; i++) {
-            String s = annotations[i][0].toString();
+
+            parameters[i]=null;
             //如果没有注解
             if(annotations[i].length==0){
 
+                if(req.getClass().getName().equals(parameterTypes[i].getName())){
+                    parameters[i]=req;
+                }
+                if(resp.getClass().getName().equals(parameterTypes[i].getName())){
+                    parameters[i]=resp;
+                }
+                if(ApplicationContext.class.getName().equals(parameterTypes[i].getName())){
+                    parameters[i]=applicationContext;
+                }
             }
             //如果有注解
             else {
+                String s = annotations[i][0].toString();
                 String[] strings = s.split("\\.");
                 String paramAnnotation = strings[strings.length - 1].split("\\(")[0];
                 try {
                     //获取参数注解工厂
-                    Object o1 = Class.forName(PACKAGE + paramAnnotation+"ParamFactory").getDeclaredConstructor().newInstance();
-                    Method build=o1.getClass().getDeclaredMethods()[0];
+                    ParamFactory o1 = (ParamFactory) Class.forName(PACKAGE + paramAnnotation+"ParamFactory").getDeclaredConstructor().newInstance();
+//                    Method build=o1.getClass().getDeclaredMethods()[0];
                     //执行工厂build方法
-                    build.invoke(o1,parameterTypes[i],parameters,parameterMap,annotations[i][0],i);
+                    o1.build(parameterTypes[i],parameters,parameterMap,annotations[i][0],i);
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }

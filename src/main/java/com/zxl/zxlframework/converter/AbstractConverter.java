@@ -1,7 +1,8 @@
 package com.zxl.zxlframework.converter;
 
+import com.zxl.zxlframework.converter.factory.ConverterFactory;
+
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * @Author: zxl
@@ -37,14 +38,8 @@ public abstract class AbstractConverter{
             if (value == null){
                 try {
                     //获取转换工厂对象
-                    Object converterFactory = Class.forName(CONVERTERFACTORYPACKAGE + cFactory).getDeclaredConstructor().newInstance();
-                    Class[] cArgs=new Class[2];
-                    cArgs[0]=Class.class;
-                    cArgs[1]=Object.class;
-                    //获取转换工厂对象的build方法
-                    Method build = converterFactory.getClass().getDeclaredMethod("build", cArgs);
-                    //转换完的值
-                    value=build.invoke(converterFactory,s,t);
+                    ConverterFactory converterFactory = (ConverterFactory) Class.forName(CONVERTERFACTORYPACKAGE + cFactory).getDeclaredConstructor().newInstance();
+                    value=converterFactory.build(s,t);
                     break;
 
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
