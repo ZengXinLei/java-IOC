@@ -14,4 +14,9 @@
 
     <bean name="a" class="com.zxl.app.A">
     </bean>
+
+    <bean name="student" class="com.servlet.Student">
+        <property name="name" value="曾鑫磊"/>
+        <property name="age" value="21"/>
+    </bean>
 </zxl>

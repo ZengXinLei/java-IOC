@@ -1,5 +1,7 @@
 package com.zxl.zxlframework.controlller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.zxl.zxlframework.annotation.method.ResponseBody;
 import com.zxl.zxlframework.annotationFactory.BuildTypeAnnotation;
 import com.zxl.zxlframework.annotationFactory.param.ParamFactory;
 import com.zxl.zxlframework.converter.Converter;
@@ -8,6 +10,8 @@ import com.zxl.zxlframework.xmlfactory.context.http.GlobalContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -37,14 +41,29 @@ public abstract class AbstractControllerFactory implements Controller {
             o=entry.getKey();
             method=entry.getValue();
         }
-        
-        buildX(o,method,req,resp);
+
+        assert method != null;
+        Object body = buildX(o, method, req, resp);
+        if(method.isAnnotationPresent(ResponseBody.class)){
+            String s = JSONObject.toJSON(body).toString();
+            PrintWriter out = null;
+            try {
+                out = resp.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            assert out != null;
+            out.write(s);
+
+
+
+        }
     }
 
     /**
      * 处理x-www-form-urlencoded数据
      */
-    public <T> void buildX(Object o,Method method,HttpServletRequest req, HttpServletResponse resp){
+    public <T> T buildX(Object o,Method method,HttpServletRequest req, HttpServletResponse resp){
 
 
         int a=new Converter(int.class,"22").getBean();
@@ -92,10 +111,11 @@ public abstract class AbstractControllerFactory implements Controller {
 
         try {
             //执行用户自定义的函数
-            method.invoke(o, parameters);
+            return (T) method.invoke(o, parameters);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 
