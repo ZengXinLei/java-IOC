@@ -36,6 +36,9 @@ public class App extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
-        new ControllerFactory(req,resp);
+        if("/test".equals(req.getRequestURI())){
+            new ControllerFactory(req,resp);
+        }
+
     }
 }

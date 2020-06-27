@@ -1,6 +1,5 @@
 package com.zxl.zxlframework.converter.factory;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -27,6 +26,7 @@ public class BaseConverterFactory implements ConverterFactory {
         init();
         Object value=null;
         String typeName = s.getTypeName();
+        //如果是基本类
         if (typeName.startsWith("java.lang")) {
             String type = typeName.split("\\.")[2];
             if (BASECLASS.containsValue(type)) {
@@ -53,6 +53,8 @@ public class BaseConverterFactory implements ConverterFactory {
 
 
         }
+
+         // 如果是基本类型
         if (BASECLASS.containsKey(typeName)) {
 
 

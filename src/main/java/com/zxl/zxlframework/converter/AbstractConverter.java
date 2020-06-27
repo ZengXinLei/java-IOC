@@ -1,12 +1,7 @@
 package com.zxl.zxlframework.converter;
 
-import com.zxl.zxlframework.converter.factory.ConverterFactory;
-
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @Author: zxl
@@ -28,6 +23,10 @@ public abstract class AbstractConverter{
     };
     public AbstractConverter(Class<?> s, Object t) {
         //如果属性和目标属性类型一样
+        String name = t.getClass().getName();
+//        if(t.getClass().getName().equals("Ljava.lang.String")){
+//            t=(String)t;
+//        }
         if (s.getName().equals(t.getClass().getName())) {
             value = t;
             return;
@@ -46,6 +45,7 @@ public abstract class AbstractConverter{
                     Method build = converterFactory.getClass().getDeclaredMethod("build", cArgs);
                     //转换完的值
                     value=build.invoke(converterFactory,s,t);
+                    break;
 
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -56,7 +56,7 @@ public abstract class AbstractConverter{
 
     }
 
-    public <K> K getBean() {
+    public   <K> K getBean() {
         return (K) value;
     }
 }

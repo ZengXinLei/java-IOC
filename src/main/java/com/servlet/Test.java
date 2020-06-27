@@ -1,6 +1,7 @@
 package com.servlet;
 
 import com.zxl.zxlframework.annotation.classz.Controller;
+import com.zxl.zxlframework.annotation.field.RequestParam;
 import com.zxl.zxlframework.annotation.method.RequestMapping;
 
 /**
@@ -12,10 +13,9 @@ import com.zxl.zxlframework.annotation.method.RequestMapping;
 public class Test {
     @RequestMapping("/test")
     public String test(
-            String s,
-            int i
+            @RequestParam("test") int test
     ){
-        System.out.println(s);
+        System.out.println(test);
         return "成功！！！！";
     }
 }
