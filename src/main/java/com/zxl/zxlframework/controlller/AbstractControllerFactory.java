@@ -60,17 +60,22 @@ public abstract class AbstractControllerFactory implements Controller {
         Object[] parameters= new Object[annotations.length];
         //获取方法的参数类型数组
         Class<?>[] parameterTypes = method.getParameterTypes();
+        //遍历函数所有参数
         for (int i = 0; i < annotations.length; i++) {
             String s = annotations[i][0].toString();
+            //如果没有注解
             if(annotations[i].length==0){
 
             }
+            //如果有注解
             else {
                 String[] strings = s.split("\\.");
                 String paramAnnotation = strings[strings.length - 1].split("\\(")[0];
                 try {
+                    //获取参数注解工厂
                     Object o1 = Class.forName(PACKAGE + paramAnnotation+"ParamFactory").getDeclaredConstructor().newInstance();
                     Method build=o1.getClass().getDeclaredMethods()[0];
+                    //执行工厂build方法
                     build.invoke(o1,parameterTypes[i],parameters,parameterMap,annotations[i][0],i);
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                     e.printStackTrace();
@@ -79,6 +84,7 @@ public abstract class AbstractControllerFactory implements Controller {
         }
 
         try {
+            //执行用户自定义的函数
             method.invoke(o, parameters);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
