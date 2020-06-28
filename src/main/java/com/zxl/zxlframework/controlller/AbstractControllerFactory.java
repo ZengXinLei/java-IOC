@@ -34,8 +34,16 @@ public abstract class AbstractControllerFactory implements Controller {
 
     @Override
     public void doService(HttpServletRequest req, HttpServletResponse resp) {
-        resp.setCharacterEncoding("UTF-8");
+
         Map<Object, Method> map=new BuildTypeAnnotation(req.getRequestURI(),req.getMethod()).getBean();
+        if(map==null){
+            try {
+                resp.sendError(404);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
         Object o=null;
         Method method=null;
         for(Map.Entry<Object, Method> entry:map.entrySet()){
@@ -43,11 +51,14 @@ public abstract class AbstractControllerFactory implements Controller {
             method=entry.getValue();
         }
 
+
         assert method != null;
         Object body = buildX(o, method, req, resp);
+        //如果有@ResponseBody注解
         if(method.isAnnotationPresent(ResponseBody.class)){
 
-
+            resp.setCharacterEncoding("UTF-8");
+            resp.setContentType("application/json; charset=utf-8");
             PrintWriter out = null;
 
             try {
