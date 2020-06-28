@@ -1,7 +1,6 @@
 package com.servlet;
 
 import com.zxl.zxlframework.controlller.ControllerFactory;
-import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
 import com.zxl.zxlframework.xmlfactory.context.support.XmlReader;
 
 import javax.servlet.http.HttpServlet;
@@ -22,7 +21,7 @@ public class App extends HttpServlet {
     @Override
     public void init() {
         //加载配置文件
-        ApplicationContext applicationContext = new XmlReader("classpath:application.xml");
+        new XmlReader("classpath:application.xml");
 
 
     }
