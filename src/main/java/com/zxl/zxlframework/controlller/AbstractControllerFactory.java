@@ -34,7 +34,8 @@ public abstract class AbstractControllerFactory implements Controller {
 
     @Override
     public void doService(HttpServletRequest req, HttpServletResponse resp) {
-        Map<Object, Method> map=new BuildTypeAnnotation(req.getRequestURI()).getBean();
+        resp.setCharacterEncoding("UTF-8");
+        Map<Object, Method> map=new BuildTypeAnnotation(req.getRequestURI(),req.getMethod()).getBean();
         Object o=null;
         Method method=null;
         for(Map.Entry<Object, Method> entry:map.entrySet()){
@@ -45,14 +46,21 @@ public abstract class AbstractControllerFactory implements Controller {
         assert method != null;
         Object body = buildX(o, method, req, resp);
         if(method.isAnnotationPresent(ResponseBody.class)){
-            String s = JSONObject.toJSON(body).toString();
+
+
             PrintWriter out = null;
+
             try {
                 out = resp.getWriter();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            String s="";
+            if(body!=null) {
+                s = JSONObject.toJSON(body).toString();
+            }
             assert out != null;
+
             out.write(s);
 
 
@@ -65,8 +73,6 @@ public abstract class AbstractControllerFactory implements Controller {
      */
     public <T> T buildX(Object o,Method method,HttpServletRequest req, HttpServletResponse resp){
 
-
-        int a=new Converter(int.class,"22").getBean();
         Annotation[][] annotations = method.getParameterAnnotations();
 
         //获取方法的属性注解map
@@ -78,17 +84,17 @@ public abstract class AbstractControllerFactory implements Controller {
         //遍历函数所有参数
         for (int i = 0; i < annotations.length; i++) {
 
-            parameters[i]=null;
+            parameters[i]=new Converter(parameterTypes[i],null).getBean();
             //如果没有注解
             if(annotations[i].length==0){
 
-                if(req.getClass().getName().equals(parameterTypes[i].getName())){
+                if(req.getClass()==parameterTypes[i]){
                     parameters[i]=req;
                 }
-                if(resp.getClass().getName().equals(parameterTypes[i].getName())){
+                if(resp.getClass()==parameterTypes[i]){
                     parameters[i]=resp;
                 }
-                if(ApplicationContext.class.getName().equals(parameterTypes[i].getName())){
+                if(parameterTypes[i]==ApplicationContext.class){
                     parameters[i]=applicationContext;
                 }
             }
@@ -110,6 +116,7 @@ public abstract class AbstractControllerFactory implements Controller {
         }
 
         try {
+
             //执行用户自定义的函数
             return (T) method.invoke(o, parameters);
         } catch (IllegalAccessException | InvocationTargetException e) {

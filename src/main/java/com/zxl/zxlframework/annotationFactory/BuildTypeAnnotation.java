@@ -9,7 +9,7 @@ public class BuildTypeAnnotation extends AbstractBuildTypeAnnotation {
     public BuildTypeAnnotation(){
         super();
     }
-    public BuildTypeAnnotation(String baseUrl){
-        super(baseUrl);
+    public BuildTypeAnnotation(String baseUrl,String method){
+        super(baseUrl,method);
     }
 }

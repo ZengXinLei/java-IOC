@@ -17,13 +17,15 @@ import java.util.Map;
 public abstract class AbstractBuildTypeAnnotation {
 
     private String baseUrl = "/";
-    private Enum mMethod= com.zxl.zxlframework.annotation.fieldenum.Method.GET;
+    private String mMethod= "GET";
     public AbstractBuildTypeAnnotation() {
 
     }
 
-    public AbstractBuildTypeAnnotation(String baseUrl) {
+    public AbstractBuildTypeAnnotation(String baseUrl,String method) {
         this.baseUrl = baseUrl;
+
+        this.mMethod=method;
     }
 
     public <T> Map<T,Method> getBean() {
@@ -48,8 +50,9 @@ public abstract class AbstractBuildTypeAnnotation {
                 if(m.isAnnotationPresent(RequestMapping.class)){
                     RequestMapping requestMapping = m.getDeclaredAnnotation(RequestMapping.class);
                     com.zxl.zxlframework.annotation.fieldenum.Method method = requestMapping.method();
+
                     String value1 = requestMapping.value();
-                    if(value1.equals("/".equals(controllerValue)?baseUrl:backUrl)&&method==mMethod){
+                    if(value1.equals("/".equals(controllerValue)?baseUrl:backUrl)&&method.name().equals(mMethod)){
                         Map<T, Method> map = new HashMap<>();
                         map.put(new  AnnotationBeanFactory(c).build(),m);
                         return map;

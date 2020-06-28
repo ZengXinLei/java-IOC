@@ -24,17 +24,17 @@ public abstract class AbstractConverter{
     };
     public AbstractConverter(Class<?> s, Object t) {
         //如果属性和目标属性类型一样
-        String name = t.getClass().getName();
-//        if(t.getClass().getName().equals("Ljava.lang.String")){
-//            t=(String)t;
-//        }
+
+        if(t==null){
+            isNull(s);
+            return;
+        }
         if (s.getName().equals(t.getClass().getName())) {
             value = t;
             return;
         }
         //遍历所有转换工厂
-        for (String cFactory :
-                CONVERTERFACTORYS) {
+        for (String cFactory : CONVERTERFACTORYS) {
             if (value == null){
                 try {
                     //获取转换工厂对象
@@ -49,6 +49,19 @@ public abstract class AbstractConverter{
             }
         }
 
+    }
+    public void isNull(Class<?> s){
+
+
+        if(String.class==s){
+            value="";
+        }
+        else  if(Boolean.class==s||boolean.class==s){
+            value=null;
+        }
+        else {
+            value=0;
+        }
     }
 
     public   <K> K getBean() {

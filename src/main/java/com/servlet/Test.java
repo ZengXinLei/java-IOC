@@ -4,7 +4,6 @@ import com.zxl.zxlframework.annotation.classz.Controller;
 import com.zxl.zxlframework.annotation.field.RequestParam;
 import com.zxl.zxlframework.annotation.method.RequestMapping;
 import com.zxl.zxlframework.annotation.method.ResponseBody;
-import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
 
 /**
  * @Author: zxl
@@ -17,10 +16,9 @@ public class Test {
     @RequestMapping("/test")
     public Student test(
             @RequestParam("test") int test,
-            ApplicationContext applicationContext
+            String s
     ){
         System.out.println(test);
-        System.out.println(applicationContext.getAttribute("b").toString());
-        return applicationContext.getAttribute("student");
+        return null;
     }
 }
