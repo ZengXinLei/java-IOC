@@ -19,26 +19,20 @@ public class App extends HttpServlet {
     }
 
 
-
     @Override
-    public void init(){
+    public void init() {
         //加载配置文件
-        ApplicationContext applicationContext =new XmlReader("classpath:application.xml");
-
+        ApplicationContext applicationContext = new XmlReader("classpath:application.xml");
 
 
     }
 
 
-
-
-
-
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) {
-        if("/test".equals(req.getRequestURI())){
-            new ControllerFactory(req,resp);
-        }
+
+        new ControllerFactory(req, resp);
+
 
     }
 }
