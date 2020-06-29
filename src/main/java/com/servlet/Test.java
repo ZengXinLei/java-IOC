@@ -12,7 +12,7 @@ import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
  * @Time: 2020/06/27 00:17:56
  * @system: ASUS
  **/
-@Controller
+@Controller("/test")
 public class Test {
     @ResponseBody
     @RequestMapping(value = "/test",method = Method.POST)
@@ -24,5 +24,10 @@ public class Test {
         Student student=applicationContext.getAttribute("student");
         student.setAge(age);
         return student;
+    }
+
+    @RequestMapping("login")
+    public String login(){
+        return "login.jsp";
     }
 }

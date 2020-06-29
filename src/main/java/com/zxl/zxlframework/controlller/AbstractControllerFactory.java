@@ -8,6 +8,7 @@ import com.zxl.zxlframework.converter.Converter;
 import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
 import com.zxl.zxlframework.xmlfactory.context.http.GlobalContext;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -76,6 +77,22 @@ public abstract class AbstractControllerFactory implements Controller {
 
 
 
+        }
+        else{
+            if(body instanceof String){
+                try {
+                    req.getRequestDispatcher(body.toString()).forward(req, resp);
+                } catch (ServletException | IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else {
+                try {
+                    resp.sendError(404);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 

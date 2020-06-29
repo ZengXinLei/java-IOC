@@ -45,6 +45,9 @@ public abstract class AbstractBuildTypeAnnotation {
             Controller controller = c.getDeclaredAnnotation(Controller.class);
             String controllerValue = controller.value();
             String backUrl=baseUrl.substring(controllerValue.length());
+            if(!backUrl.startsWith("/")){
+                backUrl="/"+backUrl;
+            }
             Method[] methods = c.getDeclaredMethods();
             for (Method m:methods){
                 if(m.isAnnotationPresent(RequestMapping.class)){
@@ -52,6 +55,9 @@ public abstract class AbstractBuildTypeAnnotation {
                     com.zxl.zxlframework.annotation.fieldenum.Method method = requestMapping.method();
 
                     String value1 = requestMapping.value();
+                    if(!value1.startsWith("/")){
+                        value1="/"+value1;
+                    }
                     if(value1.equals("/".equals(controllerValue)?baseUrl:backUrl)&&method.name().equals(mMethod)){
                         Map<T, Method> map = new HashMap<>();
                         map.put(new  AnnotationBeanFactory(c).build(),m);
