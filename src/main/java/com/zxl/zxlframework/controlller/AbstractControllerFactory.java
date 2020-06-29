@@ -80,6 +80,9 @@ public abstract class AbstractControllerFactory implements Controller {
         }
         else{
             if(body instanceof String){
+                if(!((String) body).startsWith("/")){
+                    body="/"+body;
+                }
                 try {
                     req.getRequestDispatcher(body.toString()).forward(req, resp);
                 } catch (ServletException | IOException e) {
