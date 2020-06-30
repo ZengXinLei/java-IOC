@@ -52,6 +52,18 @@ public abstract class AbstractConverter{
     }
     public void isNull(Class<?> s){
 
+        String[] baseNum={
+                "java.lang.Int",
+                "java.lang.Float",
+                "java.lang.Long",
+                "java.lang.Double",
+                "java.lang.Short",
+                "int",
+                "float",
+                "long",
+                "double",
+                "short",
+        };
 
         if(String.class==s){
             value="";
@@ -59,9 +71,13 @@ public abstract class AbstractConverter{
         else  if(Boolean.class==s||boolean.class==s){
             value=null;
         }
-        else {
-            value=0;
+        for(String type:baseNum){
+            if(type.equals(s)){
+                value=0;
+                return;
+            }
         }
+        value=null;
     }
 
     public   <K> K getBean() {

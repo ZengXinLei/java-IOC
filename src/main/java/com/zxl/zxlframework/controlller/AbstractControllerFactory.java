@@ -106,8 +106,7 @@ public abstract class AbstractControllerFactory implements Controller {
 
         Annotation[][] annotations = method.getParameterAnnotations();
 
-        //获取方法的属性注解map
-        Map<String, String[]> parameterMap = req.getParameterMap();
+
         //创建一个方法参数数组
         Object[] parameters= new Object[annotations.length];
         //获取方法的参数类型数组
@@ -119,10 +118,10 @@ public abstract class AbstractControllerFactory implements Controller {
             //如果没有注解
             if(annotations[i].length==0){
 
-                if(req.getClass()==parameterTypes[i]){
+                if(HttpServletRequest.class==parameterTypes[i]){
                     parameters[i]=req;
                 }
-                if(resp.getClass()==parameterTypes[i]){
+                if(HttpServletResponse.class==parameterTypes[i]){
                     parameters[i]=resp;
                 }
                 if(parameterTypes[i]==ApplicationContext.class){
@@ -139,7 +138,7 @@ public abstract class AbstractControllerFactory implements Controller {
                     ParamFactory o1 = (ParamFactory) Class.forName(PACKAGE + paramAnnotation+"ParamFactory").getDeclaredConstructor().newInstance();
 //                    Method build=o1.getClass().getDeclaredMethods()[0];
                     //执行工厂build方法
-                    o1.build(parameterTypes[i],parameters,parameterMap,annotations[i][0],i);
+                    o1.build(parameterTypes[i],parameters,req,annotations[i][0],i);
                 } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
