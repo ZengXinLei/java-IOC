@@ -1,6 +1,6 @@
 package com.zxl.zxlframework.xmlfactory.context.support;
 
-import com.zxl.zxlframework.annotationFactory.AnnotationBeanFactory;
+import com.zxl.zxlframework.annotationfactory.AnnotationBeanFactory;
 import com.zxl.zxlframework.converter.Converter;
 import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
 import com.zxl.zxlframework.xmlfactory.context.http.GlobalContext;
@@ -56,6 +56,9 @@ public abstract class AbstractXmlReader implements ApplicationContext {
             String p = this.getClass().getClassLoader().getResource("/").getPath();
             //进行拼接
             filiname = p + "/" + file;
+        }
+        if(!new File(filiname).exists()){
+            return;
         }
         //获取配置文件的合法性
         flag = validateXMLByXSD(filiname);

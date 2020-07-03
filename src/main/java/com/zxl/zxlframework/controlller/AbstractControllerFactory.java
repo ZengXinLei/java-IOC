@@ -2,8 +2,8 @@ package com.zxl.zxlframework.controlller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zxl.zxlframework.annotation.method.ResponseBody;
-import com.zxl.zxlframework.annotationFactory.BuildTypeAnnotation;
-import com.zxl.zxlframework.annotationFactory.param.ParamFactory;
+import com.zxl.zxlframework.annotationfactory.BuildTypeAnnotation;
+import com.zxl.zxlframework.annotationfactory.param.ParamFactory;
 import com.zxl.zxlframework.converter.Converter;
 import com.zxl.zxlframework.xmlfactory.context.ApplicationContext;
 import com.zxl.zxlframework.xmlfactory.context.http.GlobalContext;
@@ -148,6 +148,7 @@ public abstract class AbstractControllerFactory implements Controller {
         try {
 
             //执行用户自定义的函数
+            method.setAccessible(true);
             return (T) method.invoke(o, parameters);
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

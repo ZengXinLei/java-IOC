@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>zxl</servlet-name>
-        <servlet-class>com.servlet.App</servlet-class>
+        <servlet-class>com.zxl.zxlframework.servlet.App</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>zxl</servlet-name>

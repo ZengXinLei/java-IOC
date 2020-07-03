@@ -31,7 +31,7 @@ public class Test {
 //    }
 
     @RequestMapping("login")
-    public String login(
+    String login(
             @RequestParam("age") String string
     ){
         System.out.println(string);
@@ -41,7 +41,6 @@ public class Test {
 
     @RequestMapping(value = "/index",method = Method.POST)
     public String index(HttpServletRequest request, @RequestBody Map map) throws IOException {
-//        System.out.println(student.getAge());
         return "OK";
     }
 }
