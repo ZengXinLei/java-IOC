@@ -30,7 +30,9 @@ public abstract class AbstractBuildTypeAnnotation {
     }
 
     public <T> Map<T,Method> getBean() {
+        //获取所有的类
         ArrayList<Class<?>> classes = new ClassesUtil().getClasses();
+
         ArrayList<Class<?>> controllers = new ArrayList<>();
 
         //获取所有有Controller注解并且开头和用户url匹配的

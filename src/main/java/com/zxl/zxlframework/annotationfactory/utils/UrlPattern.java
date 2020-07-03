@@ -54,15 +54,22 @@ public class UrlPattern {
         if (!reqUrl.startsWith("/")) {
             reqUrl = "/" + reqUrl;
         }
-        if(!flag){
-            basePattern();
-        }
+        basePattern();
+        regPattern();
+        
     }
 
 
     private void basePattern() {
         if (this.reqUrl.equals("/".equals(this.controllerUrl) ? this.url : backUrl) && requestMapping.method().name().equals(this.type)) {
             this.flag=true;
+        }
+    }
+    private void regPattern(){
+        String pattern="^"+requestMapping.value().replaceAll("\\*\\*","(.*)")+"$";
+//        System.out.println(pattern);
+        if(backUrl.matches(pattern)){
+            flag=true;
         }
     }
 }
