@@ -9,8 +9,23 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
 </head>
 <body>
-<h1>登录</h1>
+<h1>注册</h1>
 </body>
+<script>
+    $.ajax({
+        url:"/rest",
+        data:{
+            "name":"stu",
+            "age":"21"
+        },
+        // contentType: "application/json;charset=utf-8",
+        type:"POST",
+        success:function (result) {
+            console.log(result)
+        }
+    })
+</script>
 </html>

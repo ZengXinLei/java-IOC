@@ -25,7 +25,7 @@ import java.util.Map;
  **/
 public abstract class AbstractControllerFactory implements Controller {
 
-    private static final String PACKAGE="com.zxl.zxlframework.annotationFactory.param.";
+    private static final String PACKAGE="com.zxl.zxlframework.annotationfactory.param.";
 
     private ApplicationContext applicationContext=new GlobalContext();
 
@@ -79,7 +79,7 @@ public abstract class AbstractControllerFactory implements Controller {
 
         }
         else{
-            if(body instanceof String){
+//            if(body instanceof String){
                 if(!((String) body).startsWith("/")){
                     body="/"+body;
                 }
@@ -88,14 +88,14 @@ public abstract class AbstractControllerFactory implements Controller {
                 } catch (ServletException | IOException e) {
                     e.printStackTrace();
                 }
-            }
-            else {
-                try {
-                    resp.sendError(404);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+//            }
+//            else {
+//                try {
+//                    resp.sendError(404);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
         }
     }
 

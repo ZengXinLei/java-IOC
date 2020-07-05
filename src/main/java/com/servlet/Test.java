@@ -1,6 +1,8 @@
 package com.servlet;
 
 import com.zxl.zxlframework.annotation.classz.Controller;
+import com.zxl.zxlframework.annotation.field.RequestParam;
+import com.zxl.zxlframework.annotation.fieldenum.Method;
 import com.zxl.zxlframework.annotation.method.RequestMapping;
 
 /**
@@ -26,7 +28,11 @@ public class Test {
     String test(){
         return "login.jsp";
     }
-
+    @RequestMapping(value = "/rest",method = Method.POST)
+    String rest(@RequestParam("name") String name){
+        System.out.println(name);
+        return "成功";
+    }
 //    @RequestMapping("login")
 //    String login(
 //            @RequestParam("age") String string
