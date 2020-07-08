@@ -40,7 +40,7 @@ pom.xml
     <dependency>
       <groupId>ZengXinLei</groupId>
       <artifactId>java-IOC</artifactId>
-      <version>1.0</version>
+      <version>1.0.1</version>
     </dependency>
   </dependencies>
 ```
